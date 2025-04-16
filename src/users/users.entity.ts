@@ -49,6 +49,9 @@ export class User {
   @Column({ length: 255 })
   user_password?: string;
 
+  @Column({ length: 1000 })
+  refresh_token?: string;
+
   //   @Column({ type: 'enum', enum: UserRole })
   //   user_role: UserRole;
 

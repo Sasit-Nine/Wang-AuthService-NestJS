@@ -26,4 +26,9 @@ export class UsersService {
     const user = await this.userRepository.findOne({ where: { user_id } });
     return user ? user : undefined;
   }
+  async updateRefreshToken(user_id: number, refresh_token: string) {
+    await this.userRepository.update(user_id, {
+      refresh_token: refresh_token,
+    });
+  }
 }

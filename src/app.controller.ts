@@ -7,6 +7,7 @@ import {
   Body,
   Delete,
   Param,
+  BadRequestException,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth/auth.service';
@@ -32,6 +33,12 @@ export class AppController {
   @Post('auth/signup')
   async signup(@Body() signupDto: SignupDto) {
     return this.authService.signup(signupDto);
+  }
+  @Post('auth/refresh')
+  refresh(@Body('refreshToken') refreshToken: string) {
+    if (!refreshToken)
+      throw new BadRequestException('Refresh token is required');
+    return this.authService.refreshToken(refreshToken);
   }
   @Delete('auth/delete-user/:id')
   async deleteUser(@Param('id') userId: number) {
