@@ -4,6 +4,7 @@ import { JwtService } from '@nestjs/jwt';
 import { SignupDto } from './signup.dto';
 import { EmployeesService } from 'src/employees/employees.service';
 import { ClientKafka } from '@nestjs/microservices';
+import { ref } from 'process';
 
 @Injectable()
 export class AuthService {
@@ -38,7 +39,7 @@ export class AuthService {
       type: 'refresh',
     };
     const access_token = await this.jwtService.signAsync(AC_payload, {
-      expiresIn: '1h',
+      expiresIn: '10h',
     });
     const refresh_token = await this.jwtService.signAsync(RT_payload, {
       expiresIn: '1d',
@@ -101,7 +102,7 @@ export class AuthService {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     this.kafkaClient.emit('emp_deleted', {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-      emp_code: userId,
+      emp_code: user.emp_code,
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
     });
     return { message: 'User deleted successfully' };
@@ -176,6 +177,7 @@ export class AuthService {
       user_password,
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       emp_code: employee.emp_code,
+      refresh_token: '',
     });
 
     const payload = {
