@@ -1,0 +1,116 @@
+-- MySQL dump 10.13  Distrib 8.0.41, for Linux (aarch64)
+--
+-- Host: localhost    Database: auth-db
+-- ------------------------------------------------------
+-- Server version	8.0.41
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `employees`
+--
+
+DROP TABLE IF EXISTS `employees`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `employees` (
+  `emp_id` int NOT NULL AUTO_INCREMENT,
+  `emp_code` varchar(6) NOT NULL,
+  `emp_nickTH` varchar(30) DEFAULT NULL,
+  `emp_nickEng` varchar(45) DEFAULT NULL,
+  `emp_titleTH` varchar(45) DEFAULT NULL,
+  `emp_titleEng` varchar(45) DEFAULT NULL,
+  `emp_firstTH` varchar(45) DEFAULT NULL,
+  `emp_firstEng` varchar(45) DEFAULT NULL,
+  `emp_lastTH` varchar(45) DEFAULT NULL,
+  `emp_lastEng` varchar(45) DEFAULT NULL,
+  `emp_idCard` varchar(45) DEFAULT NULL,
+  `emp_idVat` varchar(45) DEFAULT NULL,
+  `vat_code` varchar(45) DEFAULT NULL,
+  `emp_idSSO` varchar(45) DEFAULT NULL,
+  `emp_sex` varchar(45) DEFAULT NULL,
+  `emp_phone` varchar(45) DEFAULT NULL,
+  `emp_email` varchar(45) DEFAULT NULL,
+  `dep_code` varchar(45) DEFAULT NULL,
+  `pos_code` varchar(45) DEFAULT NULL,
+  `bank_code` varchar(45) DEFAULT NULL,
+  `emp_bankNo` varchar(45) DEFAULT NULL,
+  `emp_birthdate` date DEFAULT NULL,
+  `emp_datetime` datetime DEFAULT NULL,
+  `emp_dateWork` date DEFAULT NULL,
+  `emp_saveWork` date DEFAULT NULL,
+  `emp_exitWork` date DEFAULT NULL,
+  `type_code` varchar(45) DEFAULT NULL,
+  `pay_code` varchar(45) DEFAULT NULL,
+  `emp_created` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+  `emp_updated` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  PRIMARY KEY (`emp_id`),
+  UNIQUE KEY `IDX_6aa49d62bcca720302fcba850b` (`emp_code`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `employees`
+--
+
+LOCK TABLES `employees` WRITE;
+/*!40000 ALTER TABLE `employees` DISABLE KEYS */;
+INSERT INTO `employees` VALUES (1,'e_code',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2025-04-16',NULL,NULL,'2025-04-16 06:34:30.997480','2025-04-16 08:55:10.000000'),(2,'EMP001','จอห์น','John','นาย','Mr.','จอห์น','John','โด','Doe','1234567890123','VAT123456','VAT001','SSO123456','M','0891234567','john.doe@example.com','DEP001','POS001','BAY','1234567890','1990-01-01','2025-04-16 22:00:00','2025-04-01','2025-04-01',NULL,'FULLTIME','PAY001','2025-04-16 08:22:42.049671','2025-04-16 08:22:42.049671'),(3,'EMP002','เจน','Jane','นางสาว','Ms.','เจน','Jane','สมิธ','Smith','9876543210987','VAT654321','VAT002','SSO654321','F','0812345678','jane.smith@example.com','DEP002','POS002','SCB','0987654321','1992-06-15','2025-04-16 17:00:00','2025-03-20','2025-03-20','2025-04-16','PARTTIME','PAY002','2025-04-16 09:33:01.450964','2025-04-16 10:08:16.000000'),(5,'EMP003','เจน','Jane','นางสาว','Ms.','เจน','Jane','สมิธ','Smith','9876543210987','VAT654321','VAT002','SSO654321','F','0812345678','jane.smith@example.com','DEP002','POS002','SCB','0987654321','1992-06-15','2025-04-16 17:00:00','2025-03-20','2025-03-20','2025-04-16','PARTTIME','PAY002','2025-04-16 09:37:14.735283','2025-04-16 10:06:10.000000'),(6,'EMP004','เจน','Jane','นางสาว','Ms.','เจน','Jane','สมิธ','Smith','9876543210987','VAT654321','VAT002','SSO654321','F','0812345678','jane.smith@example.com','DEP002','POS002','SCB','0987654321','1992-06-15','2025-04-16 17:00:00','2025-03-20','2025-03-20','2025-04-16','PARTTIME','PAY002','2025-04-16 09:48:43.013409','2025-04-16 10:02:25.000000'),(7,'EMP005','เจน','Jane','นางสาว','Ms.','เจน','Jane','สมิธ','Smith','9876543210987','VAT654321','VAT002','SSO654321','F','0812345678','jane.smith@example.com','DEP002','POS002','SCB','0987654321','1992-06-15','2025-04-16 17:00:00','2025-03-20','2025-03-20','2025-04-16','PARTTIME','PAY002','2025-04-16 09:49:41.607606','2025-04-16 10:05:39.000000'),(8,'EMP009','เจน','Jane','นางสาว','Ms.','เจน','Jane','สมิธ','Smith','9876543210987','VAT654321','VAT002','SSO654321','F','0812345678','jane.smith@example.com','DEP002','POS002','SCB','0987654321','1992-06-15','2025-04-16 17:00:00','2025-03-20','2025-03-20',NULL,'PARTTIME','PAY002','2025-04-16 10:21:25.702231','2025-04-16 10:21:25.702231'),(10,'EMP006','สมชาย','Somchai','นาย','Mr.','สมชาย','Somchai','ใจดี','Jaidee','1234567890123','VAT123456','VC001','SSO987654321','male','0812345678','somchai@example.com','DEP01','POS01','BAY','1234567890','1990-01-01','2025-04-18 17:00:00','2025-01-15','2025-01-16','2025-12-31','FULLTIME','MONTHLY','2025-04-19 11:50:13.596051','2025-04-19 11:50:13.596051'),(12,'EMP007','สมชาย','Somchai','นาย','Mr.','สมชาย','Somchai','ใจดี','Jaidee','1234567890123','VAT123456','VC001','SSO987654321','male','0812345678','somchai@example.com','DEP01','POS01','BAY','1234567890','1990-01-01','2025-04-18 17:00:00','2025-01-15','2025-01-16','2025-12-31','FULLTIME','MONTHLY','2025-04-19 11:58:44.157304','2025-04-19 11:58:44.157304'),(13,'EMP008','สมชาย','Somchai','นาย','Mr.','สมชาย','Somchai','ใจดี','Jaidee','1234567890123','VAT123456','VC001','SSO987654321','male','0812345678','somchai@example.com','DEP01','POS01','BAY','1234567890','1990-01-01','2025-04-18 17:00:00','2025-01-15','2025-01-16','2025-12-31','FULLTIME','MONTHLY','2025-04-19 12:04:25.971750','2025-04-19 12:04:25.971750'),(14,'EMP010','สมชาย','Somchai','นาย','Mr.','สมชาย','Somchai','ใจดี','Jaidee','1234567890123','VAT123456','VC001','SSO987654321','male','0812345678','somchai@example.com','DEP01','POS01','BAY','1234567890','1990-01-01','2025-04-18 17:00:00','2025-01-15','2025-01-16','2025-12-31','FULLTIME','MONTHLY','2025-04-19 12:04:58.706915','2025-04-19 12:04:58.706915'),(15,'EMP011','สมชาย','Somchai','นาย','Mr.','สมชาย','Somchai','ใจดี','Jaidee','1234567890123','VAT123456','VC001','SSO987654321','male','0812345678','somchai@example.com','DEP01','POS01','BAY','1234567890','1990-01-01','2025-04-18 17:00:00','2025-01-15','2025-01-16','2025-12-31','FULLTIME','MONTHLY','2025-04-19 12:07:37.177443','2025-04-19 12:07:37.177443'),(16,'EMP012','สมชาย','Somchai','นาย','Mr.','สมชาย','Somchai','ใจดี','Jaidee','1234567890123','VAT123456','VC001','SSO987654321','male','0812345678','somchai@example.com','DEP01','POS01','BAY','1234567890','1990-01-01','2025-04-18 17:00:00','2025-01-15','2025-01-16','2025-12-31','FULLTIME','MONTHLY','2025-04-19 12:11:14.857152','2025-04-19 12:11:14.857152'),(17,'EMP013','สมชาย','Somchai','นาย','Mr.','สมชาย','Somchai','ใจดี','Jaidee','1234567890123','VAT123456','VC001','SSO987654321','male','0812345678','somchai@example.com','DEP01','POS01','BAY','1234567890','1990-01-01','2025-04-18 17:00:00','2025-01-15','2025-01-16','2025-12-31','FULLTIME','MONTHLY','2025-04-19 12:13:36.698554','2025-04-19 12:13:36.698554'),(18,'EMP014','สมชาย','Somchai','นาย','Mr.','สมชาย','Somchai','ใจดี','Jaidee','1234567890123','VAT123456','VC001','SSO987654321','male','0812345678','somchai@example.com','DEP01','POS01','BAY','1234567890','1990-01-01','2025-04-18 17:00:00','2025-01-15','2025-01-16','2025-12-31','FULLTIME','MONTHLY','2025-04-19 12:14:39.173695','2025-04-19 12:14:39.173695'),(19,'EMP015','สมชาย','Somchai','นาย','Mr.','สมชาย','Somchai','ใจดี','Jaidee','1234567890123','VAT123456','VC001','SSO987654321','male','0812345678','somchai@example.com','DEP01','POS01','BAY','1234567890','1990-01-01','2025-04-18 17:00:00','2025-01-15','2025-01-16','2025-12-31','FULLTIME','MONTHLY','2025-04-19 12:16:33.217791','2025-04-19 12:16:33.217791'),(20,'EMP016','สมชาย','Somchai','นาย','Mr.','สมชาย','Somchai','ใจดี','Jaidee','1234567890123','VAT123456','VC001','SSO987654321','male','0812345678','somchai@example.com','DEP01','POS01','BAY','1234567890','1990-01-01','2025-04-18 17:00:00','2025-01-15','2025-01-16','2025-12-31','FULLTIME','MONTHLY','2025-04-19 12:17:11.179777','2025-04-19 12:17:11.179777'),(21,'EMP017','สมชาย','Somchai','นาย','Mr.','สมชาย','Somchai','ใจดี','Jaidee','1234567890123','VAT123456','VC001','SSO987654321','male','0812345678','somchai@example.com','DEP01','POS01','BAY','1234567890','1990-01-01','2025-04-18 17:00:00','2025-01-15','2025-01-16','2025-12-31','FULLTIME','MONTHLY','2025-04-19 12:17:39.805557','2025-04-19 12:17:39.805557'),(22,'EMP018','สมชาย','Somchai','นาย','Mr.','สมชาย','Somchai','ใจดี','Jaidee','1234567890123','VAT123456','VC001','SSO987654321','male','0812345678','somchai@example.com','DEP01','POS01','BAY','1234567890','1990-01-01','2025-04-18 17:00:00','2025-01-15','2025-01-16','2025-12-31','FULLTIME','MONTHLY','2025-04-19 12:19:32.519293','2025-04-19 12:19:32.519293'),(23,'EMP019','สมชาย','Somchai','นาย','Mr.','สมชาย','Somchai','ใจดี','Jaidee','1234567890123','VAT123456','VC001','SSO987654321','male','0812345678','somchai@example.com','DEP01','POS01','BAY','1234567890','1990-01-01','2025-04-18 17:00:00','2025-01-15','2025-01-16','2025-12-31','FULLTIME','MONTHLY','2025-04-19 12:27:17.036176','2025-04-19 12:27:17.036176'),(24,'EMP020','สมชาย','Somchai','นาย','Mr.','สมชาย','Somchai','ใจดี','Jaidee','1234567890123','VAT123456','VC001','SSO987654321','male','0812345678','somchai@example.com','DEP01','POS01','BAY','1234567890','1990-01-01','2025-04-18 17:00:00','2025-01-15','2025-01-16','2025-12-31','FULLTIME','MONTHLY','2025-04-19 12:34:23.644110','2025-04-19 12:34:23.644110'),(25,'EMP021','สมชาย','Somchai','นาย','Mr.','สมชาย','Somchai','ใจดี','Jaidee','1234567890123','VAT123456','VC001','SSO987654321','male','0812345678','somchai@example.com','DEP01','POS01','BAY','1234567890','1990-01-01','2025-04-18 17:00:00','2025-01-15','2025-01-16','2025-12-31','FULLTIME','MONTHLY','2025-04-19 12:36:14.443423','2025-04-19 12:36:14.443423'),(26,'EMP022','สมชาย','Somchai','นาย','Mr.','สมชาย','Somchai','ใจดี','Jaidee','1234567890123','VAT123456','VC001','SSO987654321','male','0812345678','somchai@example.com','DEP01','POS01','BAY','1234567890','1990-01-01','2025-04-18 17:00:00','2025-01-15','2025-01-16','2025-04-19','FULLTIME','MONTHLY','2025-04-19 12:38:51.721883','2025-04-19 12:46:31.000000'),(27,'EMP023','สมชาย','Somchai','นาย','Mr.','สมชาย','Somchai','ใจดี','Jaidee','1234567890123','VAT123456','VC001','SSO987654321','male','0812345678','somchai@example.com','DEP01','POS01','BAY','1234567890','1990-01-01','2025-04-18 17:00:00','2025-01-15','2025-01-16','2025-04-19','FULLTIME','MONTHLY','2025-04-19 12:52:34.428636','2025-04-19 12:52:49.000000'),(28,'EMP024','สมชาย','Somchai','นาย','Mr.','สมชาย','Somchai','ใจดี','Jaidee','1234567890123','VAT123456','VC001','SSO987654321','male','0812345678','somchai@example.com','DEP01','POS01','BAY','1234567890','1990-01-01','2025-04-18 17:00:00','2025-01-15','2025-01-16','2025-04-19','FULLTIME','MONTHLY','2025-04-19 12:56:06.411259','2025-04-19 12:56:27.000000');
+/*!40000 ALTER TABLE `employees` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `emp_code` varchar(6) NOT NULL,
+  `user_username` varchar(16) NOT NULL,
+  `user_password` varchar(255) NOT NULL,
+  `user_created` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+  `otp_secret` varchar(255) DEFAULT NULL,
+  `oauth_provider` varchar(50) DEFAULT NULL,
+  `oauth_id` varchar(100) DEFAULT NULL,
+  `user_login` enum('0','1') NOT NULL DEFAULT '0',
+  `user_logindate` datetime DEFAULT NULL,
+  `user_updated` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  `refresh_token` varchar(1000) NOT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `REL_6a27ca93c0eab1783c55534a2b` (`emp_code`),
+  CONSTRAINT `FK_6a27ca93c0eab1783c55534a2b7` FOREIGN KEY (`emp_code`) REFERENCES `employees` (`emp_code`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (3,'EMP001','john_doe','password123','2025-04-16 08:22:42.068791',NULL,NULL,NULL,'0',NULL,'2025-04-16 08:22:42.068791',''),(8,'EMP009','jane_smith','securePass456','2025-04-16 10:21:25.720272',NULL,NULL,NULL,'0',NULL,'2025-04-23 04:02:56.000000','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJ1c2VybmFtZSI6ImphbmVfc21pdGgiLCJlbXBfY29kZSI6IkVNUDAwOSIsInVzZXJfY3JlYXRlZCI6IjIwMjUtMDQtMTZUMDM6MjE6MjUuNzIwWiIsInR5cGUiOiJyZWZyZXNoIiwiaWF0IjoxNzQ1MzgwOTc2LCJleHAiOjE3NDU0NjczNzZ9.vnMP4GfK9FBBSTgaeSGlxxloY1m--hJj8HXVsbuWZpo'),(9,'EMP010','somchai123','securePass456','2025-04-19 12:04:58.730047',NULL,NULL,NULL,'0',NULL,'2025-04-19 12:04:58.730047',''),(10,'EMP011','somchai123','securePass456','2025-04-19 12:07:37.207854',NULL,NULL,NULL,'0',NULL,'2025-04-19 12:07:37.207854',''),(11,'EMP012','somchai123','securePass456','2025-04-19 12:11:14.883072',NULL,NULL,NULL,'0',NULL,'2025-04-19 12:11:14.883072',''),(12,'EMP013','somchai123','securePass456','2025-04-19 12:13:36.725913',NULL,NULL,NULL,'0',NULL,'2025-04-19 12:13:36.725913',''),(13,'EMP014','somchai123','securePass456','2025-04-19 12:14:39.199838',NULL,NULL,NULL,'0',NULL,'2025-04-19 12:14:39.199838',''),(14,'EMP015','somchai123','securePass456','2025-04-19 12:16:33.233960',NULL,NULL,NULL,'0',NULL,'2025-04-19 12:16:33.233960',''),(15,'EMP016','somchai123','securePass456','2025-04-19 12:17:11.197560',NULL,NULL,NULL,'0',NULL,'2025-04-19 12:17:11.197560',''),(16,'EMP017','somchai123','securePass456','2025-04-19 12:17:39.825542',NULL,NULL,NULL,'0',NULL,'2025-04-19 12:17:39.825542',''),(17,'EMP018','somchai123','securePass456','2025-04-19 12:19:32.539375',NULL,NULL,NULL,'0',NULL,'2025-04-19 12:19:32.539375',''),(18,'EMP019','somchai123','securePass456','2025-04-19 12:27:17.070036',NULL,NULL,NULL,'0',NULL,'2025-04-19 12:27:17.070036',''),(19,'EMP020','somchai123','securePass456','2025-04-19 12:34:25.672222',NULL,NULL,NULL,'0',NULL,'2025-04-19 12:34:25.672222',''),(20,'EMP021','somchai123','securePass456','2025-04-19 12:36:14.475482',NULL,NULL,NULL,'0',NULL,'2025-04-19 12:36:14.475482','');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2025-04-23  4:50:32
