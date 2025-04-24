@@ -18,7 +18,7 @@ export class SignupDto {
   @IsString()
   user_password: string;
 
-  @ApiProperty({ example: `EMP${Math.floor(Math.random() * 900) + 100}` })
+  @ApiProperty({ example: 'EMP001' })
   @IsString()
   emp_code: string;
 
