@@ -199,6 +199,8 @@ export class AuthService {
       emp_code: employee.emp_code,
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
       emp_id: employee.emp_id,
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+      emp_name: employee.emp_nickTH,
     });
 
     return {
