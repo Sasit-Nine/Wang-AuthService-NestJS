@@ -8,6 +8,7 @@ import { jwtConstants } from './constants';
 import { JwtStrategy } from './jwt.strategy';
 import { EmployeesModule } from 'src/employees/employees.module';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -17,19 +18,25 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
     JwtModule.register({
       secret: jwtConstants.secret,
     }),
-    ClientsModule.register([
+    ClientsModule.registerAsync([
       {
         name: 'KAFKA_SERVICE',
-        transport: Transport.KAFKA,
-        options: {
-          client: {
-            clientId: 'auth-producer',
-            brokers: ['localhost:9092'],
+        imports: [ConfigModule],
+        inject: [ConfigService],
+        useFactory: (configService: ConfigService) => ({
+          transport: Transport.KAFKA,
+          options: {
+            client: {
+              clientId: 'auth-producer',
+              brokers: [
+                configService.get<string>('KAFKA_BROKER') || 'localhost:9092',
+              ],
+            },
+            consumer: {
+              groupId: 'auth-consumer-group',
+            },
           },
-          consumer: {
-            groupId: 'auth-consumer-group',
-          },
-        },
+        }),
       },
     ]),
   ],

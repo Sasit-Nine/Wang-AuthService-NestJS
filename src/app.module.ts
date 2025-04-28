@@ -23,7 +23,7 @@ import { EmployeesModule } from './employees/employees.module';
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_NAME'),
         autoLoadEntities: true,
-        synchronize: true,
+        synchronize: Boolean(configService.get<string>('SYNCHRONIZE')),
       }),
     }),
     AuthModule,
