@@ -6,7 +6,7 @@ function generateRandomUsername(): string {
   const lastNames = ['doe', 'smith', 'brown', 'johnson', 'lee'];
   const randomFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];
   const randomLastName = lastNames[Math.floor(Math.random() * lastNames.length)];
-  return randomFirstName + randomLastName + Math.floor(Math.random() * 1000);  // เพิ่มเลขสุ่มเพื่อให้ username เป็นเอกลักษณ์
+  return randomFirstName + randomLastName + Math.floor(Math.random() * 1000); // เพิ่มเลขสุ่มเพื่อให้ username เป็นเอกลักษณ์
 }
 
 export class SignupDto {
