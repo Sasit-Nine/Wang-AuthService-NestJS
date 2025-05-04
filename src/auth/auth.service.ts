@@ -5,6 +5,7 @@ import { SignupDto } from './signup.dto';
 import { EmployeesService } from 'src/employees/employees.service';
 import { ClientKafka } from '@nestjs/microservices';
 import { ref } from 'process';
+import { Employee } from 'src/employees/employees.entity';
 
 @Injectable()
 export class AuthService {
@@ -25,11 +26,13 @@ export class AuthService {
     return null;
   }
   async login(user: any) {
+    const employee = await this.employeesService.findOne(user.emp_code);
     const AC_payload = {
       user_id: user.user_id,
       username: user.user_username,
       emp_code: user.emp_code,
       user_created: user.user_created,
+      floor_picking: employee.emp_floor || null,
     };
     const RT_payload = {
       user_id: user.user_id,
@@ -69,6 +72,7 @@ export class AuthService {
       emp_code: user.emp_code,
       user_created: user.user_created,
     });
+
     const newRefreshToken = await this.jwtService.signAsync(
       {
         user_id: user.user_id,
@@ -93,17 +97,13 @@ export class AuthService {
     if (!user) {
       throw new Error('User not found');
     }
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-argument
     void this.employeesService.update(user.emp_code, {
-      emp_exitWork: new Date(),
+      emp_exitWork: new Date().toISOString(),
     });
 
     void this.usersService.delete(userId);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     this.kafkaClient.emit('emp_deleted', {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
       emp_code: user.emp_code,
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
     });
     return { message: 'User deleted successfully' };
   }
@@ -139,9 +139,9 @@ export class AuthService {
       emp_exitWork,
       type_code,
       pay_code,
+      emp_floor,
     } = signupDto;
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const employee = await this.employeesService.create({
+    const employee: Employee = await this.employeesService.create({
       emp_code,
       emp_nickTH,
       emp_nickEng,
@@ -168,45 +168,48 @@ export class AuthService {
       emp_saveWork,
       emp_exitWork,
       type_code,
+      emp_floor,
       pay_code,
+      emp_id: 0,
+      users: [],
     });
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const user = await this.usersService.create({
       user_username,
       user_password,
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       emp_code: employee.emp_code,
       refresh_token: '',
     });
 
     const payload = {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
       user_id: user.user_id,
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
       username: user.user_username,
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
       emp_code: user.emp_code,
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
       user_created: user.user_created,
+      floor_picking: employee.emp_floor || null,
     };
 
     const access_token = this.jwtService.sign(payload);
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     this.kafkaClient.emit('emp_created', {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
       emp_code: employee.emp_code,
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
       emp_id: employee.emp_id,
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
       emp_name: employee.emp_nickTH,
+    });
+
+    this.kafkaClient.emit('emp_created_order_picking', {
+      emp_code: employee.emp_code,
+      emp_id: employee.emp_id,
+      emp_name:
+        `${employee.emp_firstTH || ''} ${employee.emp_lastTH || ''}`.trim(),
+      emp_nickname: employee.emp_nickTH,
+      emp_tel: employee.emp_phone,
+      emp_floor: employee.emp_floor || null,
     });
 
     return {
       message: 'SignUp Success',
       access_token,
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       user,
     };
   }

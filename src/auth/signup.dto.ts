@@ -1,4 +1,4 @@
-import { IsString, IsOptional, IsDateString, IsEmail } from 'class-validator';
+import { IsString, IsOptional, IsDateString, IsEmail, IsNumber } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 function generateRandomUsername(): string {
@@ -66,6 +66,11 @@ export class SignupDto {
   @IsOptional()
   @IsString()
   emp_idCard?: string;
+
+  @ApiProperty({ example: 2 })
+  @IsOptional()
+  @IsNumber()
+  emp_floor?: number;
 
   @ApiProperty({ example: '1234567890123' })
   @IsOptional()

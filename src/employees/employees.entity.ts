@@ -84,8 +84,8 @@ export class Employee {
   @Column({ length: 45, nullable: true })
   emp_bankNo?: string;
 
-  @Column({ type: 'date', nullable: true })
-  emp_birthdate?: Date;
+  @Column({ type: 'datetime', nullable: true })
+  emp_birthdate?: string;
 
   //   @Column({ type: 'enum', enum: EmpStatus, nullable: true })
   //   emp_status?: EmpStatus;
@@ -94,16 +94,16 @@ export class Employee {
   //   user_code?: UserCode;
 
   @Column({ type: 'datetime', nullable: true })
-  emp_datetime?: Date;
+  emp_datetime?: string;
 
-  @Column({ type: 'date', nullable: true })
-  emp_dateWork?: Date;
+  @Column({ type: 'datetime', nullable: true })
+  emp_dateWork?: string;
 
-  @Column({ type: 'date', nullable: true })
-  emp_saveWork?: Date;
+  @Column({ type: 'datetime', nullable: true })
+  emp_saveWork?: string;
 
-  @Column({ type: 'date', nullable: true })
-  emp_exitWork?: Date;
+  @Column({ type: 'datetime', nullable: true })
+  emp_exitWork?: string;
 
   @Column({ length: 45, nullable: true })
   type_code?: string;
@@ -111,6 +111,8 @@ export class Employee {
   @Column({ length: 45, nullable: true })
   pay_code?: string;
 
+  @Column({ nullable: true })
+  emp_floor?: number;
   //   @Column({ type: 'decimal', precision: 10, scale: 2, nullable: true })
   //   salary?: number;
 

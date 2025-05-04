@@ -16,7 +16,7 @@ export class UsersService {
     });
     return user ?? undefined;
   }
-  create(userData: any) {
+  create(userData: any): Promise<User> {
     return this.userRepository.save(userData);
   }
   async delete(user_id: number): Promise<void> {
